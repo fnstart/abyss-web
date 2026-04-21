@@ -31,7 +31,24 @@ import Logo from "@/assets/logo.svg";
                                 >
                                     <text>Menu</text>
                                 </NavigationMenuTrigger>
-                                <NavigationMenuContent> </NavigationMenuContent>
+                                <NavigationMenuContent>
+                                    <div
+                                        class="flex flex-col px-1 py-1 gap-1 w-100"
+                                    >
+                                        <div
+                                            v-for="value in $home.pages"
+                                            class="flex items-center justify-start px-2 py-1 gap-2 opacity-40 bg-accent/45 hover:opacity-100 hover:bg-accent rounded-md transition-all duration-300"
+                                        >
+                                            <component
+                                                class="size-4"
+                                                :is="value.icon"
+                                            />
+                                            <a :href="value.href">{{
+                                                value.id
+                                            }}</a>
+                                        </div>
+                                    </div>
+                                </NavigationMenuContent>
                             </NavigationMenuItem>
 
                             <NavigationMenuItem>
@@ -54,7 +71,7 @@ import Logo from "@/assets/logo.svg";
                         Login
                     </div>
                     <div
-                        class="flex px-4 py-1 [&_text]:opacity-70 hover:[&_text]:opacity-90 bg-accent/50 hover:bg-accent rounded-full border border-foreground/20 hover:border-foreground/80 cursor-pointer transition-colors duration-300"
+                        class="flex px-4 py-1 [&_text]:opacity-70 hover:[&_text]:opacity-90 bg-accent/50 hover:bg-accent rounded-full border border-bg-accent cursor-pointer transition-colors duration-300"
                     >
                         <text
                             class="select-none transition-transition-opacity duration-300"
