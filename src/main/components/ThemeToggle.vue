@@ -4,7 +4,7 @@ import { Moon, Sun } from "@lucide/vue";
 
 <template>
     <div
-        class="flex overflow-hidden w-9 h-9 fixed bottom-4 right-4 [&_svg]:size-5 opacity-30 hover:opacity-100 hover:bg-card rounded-md transition-colors transition-opacity duration-300 cursor-pointer"
+        class="flex overflow-hidden w-9 h-9 fixed bottom-4 right-4 z-150 [&_svg]:size-5 opacity-30 hover:opacity-100 hover:bg-card rounded-md transition-colors transition-opacity duration-300 cursor-pointer"
         @click="$theme.toggle"
     >
         <div class="flex relative w-full h-full items-center justify-center">

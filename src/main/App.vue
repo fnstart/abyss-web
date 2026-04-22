@@ -106,7 +106,7 @@ import Favicon from "@/assets/favicon.svg";
                         class="flex px-4 py-1 [&_text]:opacity-70 hover:[&_text]:opacity-90 bg-accent/50 hover:bg-accent rounded-md border border-bg-accent cursor-pointer transition-colors duration-300"
                     >
                         <text
-                            class="select-none transition-transition-opacity duration-300"
+                            class="select-none transition-opacity duration-300"
                             >Purchase</text
                         >
                     </div>

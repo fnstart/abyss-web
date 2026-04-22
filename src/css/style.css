@@ -2,6 +2,10 @@
 
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./theme.css";
+
+@source "../**/*.{vue,ts,js,tsx,jsx}";
+@source "../../index.html";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -43,8 +47,6 @@
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
 }
-
-@import "./theme.css";
 
 @layer base {
     * {
