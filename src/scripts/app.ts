@@ -4,10 +4,9 @@ import * as composables from "@/scripts/composables";
 
 import VueSmoothScroll from "vue3-smooth-scroll";
 
+import "@fontsource-variable/jetbrains-mono/index.css";
 import "@/css/style.css";
 import App from "@/main/App.vue";
-
-injectSpeedInsights();
 
 const app = createApp(App);
 
@@ -21,3 +20,13 @@ composables.compose.forEach((data) => {
 
 app.use(VueSmoothScroll);
 app.mount("#app");
+
+if (typeof window !== "undefined") {
+  const start = () => injectSpeedInsights();
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(start);
+  } else {
+    setTimeout(start, 1);
+  }
+}

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@tailwindcss/vite": "^4.2.2",
     "@vercel/speed-insights": "^2.0.0",
     "@vueuse/core": "^14.2.1",
