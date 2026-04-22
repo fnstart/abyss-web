@@ -5,9 +5,15 @@ import {
   ScanSearch,
   PencilRuler,
   Pyramid,
+  BookUser,
 } from "@lucide/vue";
 
 const Pages = [
+  {
+    id: "Update IP",
+    href: "/?popup=update",
+    icon: BookUser,
+  },
   {
     id: "Download Injector",
     href: "/downloads?ref=injector",

@@ -2,11 +2,15 @@ import "vue";
 import { type UseColorModeReturn } from "@vueuse/core";
 import { type LucideIcon } from "@lucide/vue";
 
-type PageObject = {
-  id: string;
-  href: string;
-  icon: LucideIcon;
-};
+declare global {
+  type MenuStyle = "TOP_BAR" | "BOTTOM_BAR";
+
+  type PageObject = {
+    id: string;
+    href: string;
+    icon: LucideIcon;
+  };
+}
 
 declare module "vue" {
   interface ComponentCustomProperties {
@@ -16,6 +20,10 @@ declare module "vue" {
     };
     $home: {
       pages: PageObject[];
+    };
+    $main: {
+      SetMenuStyle: (value: MenuStyle) => void;
+      GetMenuStyle: () => MenuStyle;
     };
   }
 }

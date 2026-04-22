@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import * as composables from "@/scripts/composables";
 
+import VueSmoothScroll from "vue3-smooth-scroll";
+
 import "@/css/style.css";
 import App from "@/main/App.vue";
 
@@ -14,4 +16,5 @@ composables.compose.forEach((data) => {
   );
 });
 
+app.use(VueSmoothScroll);
 app.mount("#app");
