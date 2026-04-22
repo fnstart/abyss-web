@@ -230,6 +230,7 @@ import Favicon from "@/assets/favicon.svg";
             <div
                 class="flex flex-col items-center w-full h-full bg-background rounded-md p-2 overflow-y-scroll"
                 v-smooth-scroll
+                href="#home"
             >
                 <HomePage />
             </div>
