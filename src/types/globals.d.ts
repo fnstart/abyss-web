@@ -13,9 +13,10 @@ declare global {
   };
 
   type PopupContent = {
-    title: string | undefined;
-    description: string | undefined;
-    component: Component | undefined;
+    title?: string;
+    description?: string;
+    component?: Component;
+    statement?: string;
   };
 }
 
@@ -28,6 +29,10 @@ declare module "vue" {
     $home: {
       pages: PageObject[];
     };
+    $secret: {
+      Encrypt: (jwt: JWTPayload, pin: string) => boolean;
+      Decrypt: (secret: string) => Uint8Array | undefined;
+    };
     $main: {
       SetMenuStyle: (value: MenuStyle) => void;
       GetMenuStyle: () => MenuStyle;
@@ -39,6 +44,11 @@ declare module "vue" {
         component: Component,
       ) => void;
       GetPopupContent: Ref<PopupContent>;
+      AddPopup: (
+        content: PopupContent,
+        component: Component,
+        show: boolean,
+      ) => void;
     };
   }
 }

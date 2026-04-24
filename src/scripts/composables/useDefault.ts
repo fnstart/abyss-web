@@ -4,17 +4,58 @@ import {
   type Component,
   defineAsyncComponent,
   shallowRef,
+  watch,
 } from "vue";
 
-const SHOW_POPUP = ref(true);
-const POPUP_CONTENT: Ref<PopupContent> = shallowRef({
-  title: "Navigation Style",
-  description: "Choose how you'd like the navigation to appear.",
-  component: defineAsyncComponent(
-    () => import("@/main/components/popup/ChooseBar.vue"),
-  ),
+export const SAVED_POPUP: Ref<PopupContent | null> = ref(null);
+export const SHOW_POPUP = ref(false);
+export const POPUP_CONTENT: Ref<PopupContent> = shallowRef({});
+export const MENU_SETTING = ref(
+  localStorage.getItem("MENU_SETTING") || "BOTTOM_BAR",
+);
+
+watch(SHOW_POPUP, (value: boolean) => {
+  if (value) {
+    const statementExists =
+      POPUP_CONTENT.value.statement &&
+      localStorage.getItem(POPUP_CONTENT.value.statement);
+
+    if (statementExists) {
+      SHOW_POPUP.value = false;
+      POPUP_CONTENT.value = {};
+    } else {
+      SAVED_POPUP.value = POPUP_CONTENT.value;
+    }
+  } else {
+    if (SAVED_POPUP.value && SAVED_POPUP.value.statement) {
+      localStorage.setItem(SAVED_POPUP.value.statement, crypto.randomUUID());
+    }
+    SHOW_POPUP.value = false;
+  }
 });
-const MENU_SETTING = ref(localStorage.getItem("MENU_SETTING") || "BOTTOM_BAR");
+
+export const AddPopup = {
+  value: (content: PopupContent, component: Component, show: boolean) => {
+    content.component = defineAsyncComponent(() => component);
+
+    POPUP_CONTENT.value = content;
+
+    if (show) {
+      SHOW_POPUP.value = show;
+    }
+  },
+  index: "AddPopup",
+};
+
+AddPopup.value(
+  {
+    title: "Navigation Style",
+    description: "Choose how you'd like the navigation to appear.",
+    statement: "NAV_STYLE_STATUS",
+  },
+  import("@/main/components/popup/ChooseBar.vue"),
+  true,
+);
 
 export const SetPopupRef = {
   value: (value: boolean) => {
@@ -69,6 +110,7 @@ export const list = {
     GetPopupRef,
     SetPopupContent,
     GetPopupContent,
+    AddPopup,
   ],
 };
 

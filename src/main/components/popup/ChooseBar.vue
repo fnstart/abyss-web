@@ -29,7 +29,7 @@
                 <div class="w-[50%] h-1 bg-foreground/15" />
             </div>
             <div
-                class="flex flex-row gap-3 h-4 w-fit min-w-10 my-auto mx-2 mb-2"
+                class="flex flex-row gap-1 h-4 w-fit min-w-10 my-auto mx-2 mb-2"
             >
                 <div class="w-5 h-full bg-foreground/15" />
                 <div class="w-15 h-full bg-foreground/15" />

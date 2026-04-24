@@ -102,10 +102,34 @@ import Favicon from "@/assets/favicon.svg";
                     <div
                         class="opacity-60 hover:opacity-100 transition-opacity duration-300 cursor-pointer"
                     >
-                        <a href="/?popup=login">Login</a>
+                        <a
+                            @click="
+                                $main.AddPopup(
+                                    {
+                                        title: 'Login',
+                                        description:
+                                            'Input your Private Abyss Login Token, to save this for future events.',
+                                    },
+                                    import('@/main/components/popup/Login.vue'),
+                                    true,
+                                )
+                            "
+                            >Login</a
+                        >
                     </div>
                     <div
                         class="flex px-4 py-1 [&_text]:opacity-70 hover:[&_text]:opacity-90 bg-accent/50 hover:bg-accent rounded-md border border-bg-accent cursor-pointer transition-colors duration-300"
+                        @click="
+                            $main.AddPopup(
+                                {
+                                    title: 'Purchase',
+                                    description:
+                                        'Purchase your first key, and get started with Abyss today.',
+                                },
+                                import('@/main/components/popup/Purchase.vue'),
+                                true,
+                            )
+                        "
                     >
                         <text
                             class="select-none transition-opacity duration-300"
@@ -198,7 +222,17 @@ import Favicon from "@/assets/favicon.svg";
                             <TooltipTrigger as-child>
                                 <a
                                     class="flex items-center justify-start px-2 py-1"
-                                    href="/?popup=login"
+                                    @click="
+                                        $main.AddPopup(
+                                            {
+                                                title: 'Login',
+                                                description:
+                                                    'Input your Private Abyss Login Token, to save this for future events.',
+                                            },
+                                            import('@/main/components/popup/Login.vue'),
+                                            true,
+                                        )
+                                    "
                                 >
                                     <LogIn class="size-4" />
                                 </a>
@@ -215,7 +249,17 @@ import Favicon from "@/assets/favicon.svg";
                             <TooltipTrigger as-child>
                                 <a
                                     class="flex items-center justify-start px-2 py-1"
-                                    href="/?popup=purchase"
+                                    @click="
+                                        $main.AddPopup(
+                                            {
+                                                title: 'Purchase',
+                                                description:
+                                                    'Buy your first key (token), and get started with Abyss today.',
+                                            },
+                                            import('@/main/components/popup/Purchase.vue'),
+                                            true,
+                                        )
+                                    "
                                 >
                                     <ShoppingBasket class="size-4" />
                                 </a>

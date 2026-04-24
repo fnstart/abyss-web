@@ -21,13 +21,15 @@ import {
     <Dialog v-model:open="$main.GetPopupRef.value">
         <DialogContent>
             <DialogHeader>
-                <DialogTitle>{{
+                <DialogTitle v-show="$main.GetPopupContent.value.title">{{
                     $main.GetPopupContent.value.title
                 }}</DialogTitle>
-                <DialogDescription>
+                <DialogDescription
+                    v-show="$main.GetPopupContent.value.description"
+                >
                     {{ $main.GetPopupContent.value.description }}
                 </DialogDescription>
-                <div class="flex flex-col">
+                <div class="flex flex-col px-3 py-3">
                     <component :is="$main.GetPopupContent.value.component" />
                 </div>
             </DialogHeader>
