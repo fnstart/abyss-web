@@ -2,6 +2,7 @@ import {
   ref,
   type Ref,
   type Component,
+  type AsyncComponentLoader,
   defineAsyncComponent,
   shallowRef,
   watch,
@@ -35,8 +36,12 @@ watch(SHOW_POPUP, (value: boolean) => {
 });
 
 export const AddPopup = {
-  value: (content: PopupContent, component: Component, show: boolean) => {
-    content.component = defineAsyncComponent(() => component);
+  value: (
+    content: PopupContent,
+    component: AsyncComponentLoader,
+    show: boolean,
+  ) => {
+    content.component = defineAsyncComponent(component);
 
     POPUP_CONTENT.value = content;
 
@@ -53,7 +58,7 @@ AddPopup.value(
     description: "Choose how you'd like the navigation to appear.",
     statement: "NAV_STYLE_STATUS",
   },
-  import("@/main/components/popup/ChooseBar.vue"),
+  () => import("@/main/components/popup/ChooseBar.vue"),
   true,
 );
 

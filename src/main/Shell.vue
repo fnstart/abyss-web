@@ -110,7 +110,8 @@ import Favicon from "@/assets/favicon.svg";
                                         description:
                                             'Input your Private Abyss Login Token, to save this for future events.',
                                     },
-                                    import('@/main/components/popup/Login.vue'),
+                                    () =>
+                                        import('@/main/components/popup/Login.vue'),
                                     true,
                                 )
                             "
@@ -126,7 +127,8 @@ import Favicon from "@/assets/favicon.svg";
                                     description:
                                         'Purchase your first key, and get started with Abyss today.',
                                 },
-                                import('@/main/components/popup/Purchase.vue'),
+                                () =>
+                                    import('@/main/components/popup/Purchase.vue'),
                                 true,
                             )
                         "
@@ -229,7 +231,8 @@ import Favicon from "@/assets/favicon.svg";
                                                 description:
                                                     'Input your Private Abyss Login Token, to save this for future events.',
                                             },
-                                            import('@/main/components/popup/Login.vue'),
+                                            () =>
+                                                import('@/main/components/popup/Login.vue'),
                                             true,
                                         )
                                     "
@@ -256,7 +259,8 @@ import Favicon from "@/assets/favicon.svg";
                                                 description:
                                                     'Buy your first key (token), and get started with Abyss today.',
                                             },
-                                            import('@/main/components/popup/Purchase.vue'),
+                                            () =>
+                                                import('@/main/components/popup/Purchase.vue'),
                                             true,
                                         )
                                     "
