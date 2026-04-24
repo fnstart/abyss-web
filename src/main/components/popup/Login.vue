@@ -16,7 +16,7 @@ import {
 } from "@/main/components/ui/input-otp";
 import { secret, main } from "@/scripts/composables";
 
-const TOKEN_MODEL = ref(crypto.randomUUID());
+const TOKEN_MODEL: Ref<string> = ref(crypto.randomUUID());
 const PIN_MODEL = ref("");
 const PAGE: Ref<"INPUT_TOKEN" | "INPUT_PIN" | "DECRYPT_TOKEN"> =
     ref("INPUT_TOKEN");
