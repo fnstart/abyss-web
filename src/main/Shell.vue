@@ -54,14 +54,14 @@ import Favicon from "@/assets/favicon.svg";
                                         <div
                                             v-for="value in $home.pages"
                                             class="flex items-center justify-start px-2 py-1 gap-2 opacity-40 bg-accent/45 hover:opacity-100 hover:bg-accent rounded-md transition-all duration-300"
+                                            :href="value.href"
+                                            @click="value.callback"
                                         >
                                             <component
                                                 class="size-4"
                                                 :is="value.icon"
                                             />
-                                            <a :href="value.href">{{
-                                                value.id
-                                            }}</a>
+                                            <text>{{ value.id }}</text>
                                         </div>
                                     </div>
                                 </NavigationMenuContent>
@@ -88,7 +88,7 @@ import Favicon from "@/assets/favicon.svg";
                                     :class="navigationMenuTriggerStyle()"
                                     class="opacity-50 bg-transparent hover:opacity-100 transition-opacity duration-300 rounded-full cursor-pointer select-none"
                                 >
-                                    <a href="http://79.105.152.67:59345/"
+                                    <a href="http://79.105.26.221:59345/"
                                         >Original</a
                                     >
                                 </NavigationMenuLink>
@@ -178,7 +178,7 @@ import Favicon from "@/assets/favicon.svg";
                             <TooltipTrigger as-child>
                                 <a
                                     class="flex items-center justify-start px-2 py-1"
-                                    href="http://79.105.152.67:59345/"
+                                    href="http://79.105.26.221:59345/"
                                 >
                                     <LayoutTemplate class="size-4" />
                                 </a>
@@ -199,6 +199,7 @@ import Favicon from "@/assets/favicon.svg";
                         <Tooltip>
                             <TooltipTrigger as-child>
                                 <a
+                                    @click="value.callback"
                                     :href="value.href"
                                     class="flex items-center justify-start px-2 py-1"
                                 >

@@ -8,7 +8,8 @@ declare global {
 
   type PageObject = {
     id: string;
-    href: string;
+    href?: string;
+    callback?: () => void;
     icon: LucideIcon;
   };
 

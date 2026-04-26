@@ -7,41 +7,50 @@ import {
   Pyramid,
   BookUser,
 } from "@lucide/vue";
+import { main } from "@/scripts/composables";
 
 const Pages = [
   {
     id: "Update IP",
-    href: "/?popup=update",
+    callback: () =>
+      main.AddPopup.value(
+        {
+          title: "Update IP",
+          description: "Decrypt your PALT to authenticate.",
+        },
+        () => import("@/main/components/popup/UpdateIP.vue"),
+        true,
+      ),
     icon: BookUser,
   },
   {
     id: "Download Injector",
-    href: "/downloads?ref=injector",
+    callback: () => {},
     icon: Bug,
   },
   {
     id: "Download Console",
-    href: "/downloads?ref=console",
+    callback: () => {},
     icon: SquareChevronRight,
   },
   {
     id: "Public Storage",
-    href: "/storage",
+    href: "/?page=storage",
     icon: Database,
   },
   {
     id: "Avatar Search",
-    href: "/search",
+    href: "/?page=search",
     icon: ScanSearch,
   },
   {
     id: "Custom Client Editor",
-    href: "/client?ref=editor",
+    href: "/?page=editor",
     icon: PencilRuler,
   },
   {
     id: "Activate Custom Client",
-    href: "/client?ref=activation",
+    callback: () => {},
     icon: Pyramid,
   },
 ];

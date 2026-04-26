@@ -78,11 +78,7 @@ watch(PIN_MODEL, async (data) => {
 <template>
     <div v-show="PAGE === 'INPUT_TOKEN'" class="flex flex-col gap-3">
         <InputGroup class="py-5 px-1">
-            <InputGroupInput
-                v-model="TOKEN_MODEL"
-                placeholder="..."
-                class="!pl-1"
-            />
+            <InputGroupInput v-model="TOKEN_MODEL" placeholder="..." />
             <InputGroupAddon>
                 <InputGroupText>abyss://</InputGroupText>
             </InputGroupAddon>
