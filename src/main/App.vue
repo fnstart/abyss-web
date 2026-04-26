@@ -19,7 +19,7 @@ import {
 
 <template>
     <Dialog v-model:open="$main.GetPopupRef.value">
-        <DialogContent>
+        <DialogContent class="min-w-150">
             <DialogHeader>
                 <DialogTitle v-show="$main.GetPopupContent.value.title">{{
                     $main.GetPopupContent.value.title

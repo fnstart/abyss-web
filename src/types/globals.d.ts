@@ -4,7 +4,7 @@ import { type LucideIcon } from "@lucide/vue";
 import type { Component } from "vue";
 
 declare global {
-  type MenuStyle = "TOP_BAR" | "BOTTOM_BAR";
+  type MenuStyle = "TOP_BAR" | "BOTTOM_BAR" | "LEFT_BAR";
 
   type PageObject = {
     id: string;

@@ -156,7 +156,7 @@ import Favicon from "@/assets/favicon.svg";
                     </div>
                     <div
                         class="flex opacity-40 text-destructive bg-destructive/15 hover:opacity-100 hover:bg-destructive/25 rounded-md transition-all duration-300 cursor-pointer"
-                        @click="$main.SetMenuStyle('TOP_BAR')"
+                        @click="$main.SetMenuStyle('LEFT_BAR')"
                     >
                         <Tooltip>
                             <TooltipTrigger as-child>
@@ -167,7 +167,7 @@ import Favicon from "@/assets/favicon.svg";
                                 </div>
                             </TooltipTrigger>
                             <TooltipContent>
-                                <p>Switch to top bar.</p>
+                                <p>Switch to left bar.</p>
                             </TooltipContent>
                         </Tooltip>
                     </div>
@@ -248,6 +248,142 @@ import Favicon from "@/assets/favicon.svg";
                     </div>
                     <div
                         class="flex opacity-40 bg-yellow-300/15 text-yellow-300 hover:bg-yellow-300/25 hover:opacity-100 rounded-md transition-all duration-300 cursor-pointer"
+                    >
+                        <Tooltip>
+                            <TooltipTrigger as-child>
+                                <a
+                                    class="flex items-center justify-start px-2 py-1"
+                                    @click="
+                                        $main.AddPopup(
+                                            {
+                                                title: 'Purchase',
+                                                description:
+                                                    'Buy your first key (token), and get started with Abyss today.',
+                                            },
+                                            () =>
+                                                import('@/main/components/popup/Purchase.vue'),
+                                            true,
+                                        )
+                                    "
+                                >
+                                    <ShoppingBasket class="size-4" />
+                                </a>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Purchase your first token to gain access.</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </div>
+                </div>
+            </div>
+            <div
+                v-show="$main.GetMenuStyle() === 'LEFT_BAR'"
+                class="flex flex-col absolute left-5 top-5 gap-2 w-fit h-fit z-100"
+            >
+                <div
+                    class="flex flex-col gap-1 px-1 py-1 bg-card border rounded-md"
+                >
+                    <div
+                        class="flex bg-accent/45 hover:bg-accent h-8 w-8 rounded-md transition-all duration-300"
+                    >
+                        <div class="flex items-center justify-start px-2 py-1">
+                            <Favicon class="size-4" />
+                        </div>
+                    </div>
+                    <div
+                        class="flex opacity-40 text-destructive bg-destructive/15 hover:opacity-100 h-8 w-8 hover:bg-destructive/25 rounded-md transition-all duration-300 cursor-pointer"
+                        @click="$main.SetMenuStyle('TOP_BAR')"
+                    >
+                        <Tooltip>
+                            <TooltipTrigger as-child>
+                                <div
+                                    class="flex items-center justify-start px-2 py-1"
+                                >
+                                    <ScanQrCode class="size-4" />
+                                </div>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Switch to top bar.</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </div>
+                    <div
+                        class="flex opacity-40 bg-accent/45 hover:bg-accent hover:opacity-100 h-8 w-8 rounded-md transition-all duration-300 cursor-pointer"
+                    >
+                        <Tooltip>
+                            <TooltipTrigger as-child>
+                                <a
+                                    class="flex items-center justify-start px-2 py-1"
+                                    href="http://79.105.26.221:59345/"
+                                >
+                                    <LayoutTemplate class="size-4" />
+                                </a>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Route to orignal website.</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col gap-1 px-1 py-1 bg-card border rounded-md"
+                >
+                    <div
+                        v-for="value in $home.pages"
+                        class="flex gap-2 opacity-40 bg-accent/45 hover:opacity-100 h-8 w-8 hover:bg-accent rounded-md transition-all duration-300 cursor-pointer"
+                    >
+                        <Tooltip>
+                            <TooltipTrigger as-child>
+                                <a
+                                    @click="value.callback"
+                                    :href="value.href"
+                                    class="flex items-center justify-start px-2 py-1"
+                                >
+                                    <component
+                                        class="size-4"
+                                        :is="value.icon"
+                                    />
+                                </a>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>{{ value.id }}</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col gap-2 px-1 py-1 bg-card border rounded-md"
+                >
+                    <div
+                        class="flex opacity-40 bg-accent/45 hover:bg-accent hover:opacity-100 h-8 w-8 rounded-md transition-all duration-300 cursor-pointer"
+                    >
+                        <Tooltip>
+                            <TooltipTrigger as-child>
+                                <a
+                                    class="flex items-center justify-start px-2 py-1"
+                                    @click="
+                                        $main.AddPopup(
+                                            {
+                                                title: 'Login',
+                                                description:
+                                                    'Input your Private Abyss Login Token, to save this for future events.',
+                                            },
+                                            () =>
+                                                import('@/main/components/popup/Login.vue'),
+                                            true,
+                                        )
+                                    "
+                                >
+                                    <LogIn class="size-4" />
+                                </a>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Login with token.</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </div>
+                    <div
+                        class="flex opacity-40 bg-yellow-300/15 text-yellow-300 hover:bg-yellow-300/25 hover:opacity-100 h-8 w-8 rounded-md transition-all duration-300 cursor-pointer"
                     >
                         <Tooltip>
                             <TooltipTrigger as-child>
