@@ -1,11 +1,11 @@
 import {
   ref,
-  type Ref,
-  type Component,
-  type AsyncComponentLoader,
   defineAsyncComponent,
   shallowRef,
   watch,
+  type Ref,
+  type Component,
+  type AsyncComponentLoader,
 } from "vue";
 
 export const SAVED_POPUP: Ref<PopupContent | null> = ref(null);
