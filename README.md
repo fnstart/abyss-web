@@ -10,4 +10,4 @@ Install packages & Run:
 > bun i && bun run dev
 ```
 
-Version 2
+Version 3
