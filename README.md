@@ -15,3 +15,7 @@ Install the dependencies and start the development server:
 bun install
 bun run dev
 ```
+
+---
+
+Made with 💜 and a healthy fear of the abyss. If it stares back, just `bun run dev` again. ฅ^•ﻌ•^ฅ
