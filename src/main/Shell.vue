@@ -10,7 +10,22 @@ import {
     TooltipTrigger,
     TooltipProvider,
 } from "@/main/components/ui/tooltip";
-import HomePage from "./pages/Home.vue";
+import { RouterView, useRoute, useRouter } from "vue-router";
+
+const router = useRouter();
+const route = useRoute();
+
+// Nav entries carry either a named route or a callback (see useHome.ts).
+const navigate = (value: PageObject) => {
+    if (value.route) {
+        router.push({ name: value.route });
+        return;
+    }
+    value.callback?.();
+};
+
+const isActive = (value: PageObject) =>
+    value.route !== undefined && route.name === value.route;
 
 import {
     NavigationMenu,
@@ -53,9 +68,10 @@ import Favicon from "@/assets/favicon.svg";
                                     >
                                         <div
                                             v-for="value in $home.pages"
-                                            class="flex items-center justify-start px-2 py-1 gap-2 opacity-40 bg-accent/45 hover:opacity-100 hover:bg-accent rounded-md transition-all duration-300"
-                                            :href="value.href"
-                                            @click="value.callback"
+                                            :key="value.id"
+                                            class="flex items-center justify-start px-2 py-1 gap-2 bg-accent/45 hover:opacity-100 hover:bg-accent rounded-md transition-all duration-300 cursor-pointer select-none"
+                                            :class="isActive(value) ? 'opacity-100 bg-accent' : 'opacity-40'"
+                                            @click="navigate(value)"
                                         >
                                             <component
                                                 class="size-4"
@@ -194,13 +210,14 @@ import Favicon from "@/assets/favicon.svg";
                 >
                     <div
                         v-for="value in $home.pages"
-                        class="flex gap-2 opacity-40 bg-accent/45 hover:opacity-100 hover:bg-accent rounded-md transition-all duration-300 cursor-pointer"
+                        :key="value.id"
+                        class="flex gap-2 bg-accent/45 hover:opacity-100 hover:bg-accent rounded-md transition-all duration-300 cursor-pointer"
+                        :class="isActive(value) ? 'opacity-100 bg-accent' : 'opacity-40'"
                     >
                         <Tooltip>
                             <TooltipTrigger as-child>
                                 <a
-                                    @click="value.callback"
-                                    :href="value.href"
+                                    @click="navigate(value)"
                                     class="flex items-center justify-start px-2 py-1"
                                 >
                                     <component
@@ -330,13 +347,14 @@ import Favicon from "@/assets/favicon.svg";
                 >
                     <div
                         v-for="value in $home.pages"
-                        class="flex gap-2 opacity-40 bg-accent/45 hover:opacity-100 h-8 w-8 hover:bg-accent rounded-md transition-all duration-300 cursor-pointer"
+                        :key="value.id"
+                        class="flex gap-2 bg-accent/45 hover:opacity-100 h-8 w-8 hover:bg-accent rounded-md transition-all duration-300 cursor-pointer"
+                        :class="isActive(value) ? 'opacity-100 bg-accent' : 'opacity-40'"
                     >
                         <Tooltip>
                             <TooltipTrigger as-child>
                                 <a
-                                    @click="value.callback"
-                                    :href="value.href"
+                                    @click="navigate(value)"
                                     class="flex items-center justify-start px-2 py-1"
                                 >
                                     <component
@@ -417,8 +435,29 @@ import Favicon from "@/assets/favicon.svg";
                 v-smooth-scroll
                 href="#home"
             >
-                <HomePage />
+                <RouterView v-slot="{ Component }">
+                    <Transition name="page" mode="out-in">
+                        <component :is="Component" :key="route.name" />
+                    </Transition>
+                </RouterView>
             </div>
         </main>
     </TooltipProvider>
 </template>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+    transition:
+        opacity 150ms ease,
+        transform 150ms ease;
+}
+.page-enter-from {
+    opacity: 0;
+    transform: translateY(4px);
+}
+.page-leave-to {
+    opacity: 0;
+    transform: translateY(-4px);
+}
+</style>
