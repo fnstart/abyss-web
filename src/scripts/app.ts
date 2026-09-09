@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import { injectSpeedInsights } from "@vercel/speed-insights";
 import * as composables from "@/scripts/composables";
+import router from "@/scripts/router";
 
 import VueSmoothScroll from "vue3-smooth-scroll";
 
@@ -18,6 +19,7 @@ composables.compose.forEach((data) => {
   );
 });
 
+app.use(router);
 app.use(VueSmoothScroll);
 app.mount("#app");
 
