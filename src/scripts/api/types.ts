@@ -29,17 +29,19 @@ export type ActivationResult = {
   expiresAt?: string;
 };
 
+/** Mirrors the global StorageItem in types/globals.d.ts - Storage.vue reads
+ *  `items`, so the field names here are the ones its page already consumes. */
 export type StorageEntry = {
   id: string;
   name: string;
-  size: number;
-  uploadedAt: string;
+  size?: number;
+  updatedAt?: string;
   url?: string;
 };
 
 export type StoragePage = {
-  entries: StorageEntry[];
-  cursor?: string;
+  items: StorageEntry[];
+  cursor?: string | null;
 };
 
 export type Avatar = {
@@ -48,6 +50,6 @@ export type Avatar = {
   thumbnail?: string;
 };
 
-export type AvatarSearchResult = {
-  results: Avatar[];
-};
+/** Search.vue assigns `result.data` straight to a list, so this is the array
+ *  itself rather than a wrapper object. */
+export type AvatarSearchResult = Avatar[];

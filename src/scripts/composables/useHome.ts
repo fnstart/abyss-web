@@ -95,14 +95,7 @@ const download = (title: string, link: DownloadLink) => {
   );
 };
 
-/**
- * PageObject gains `route` when globals.d.ts lands the router change. Widening
- * it here keeps this file compiling on its own until then; drop the local type
- * once PageObject carries `route` itself.
- */
-type MenuEntry = PageObject & { route?: string };
-
-const Pages: MenuEntry[] = [
+const Pages: PageObject[] = [
   {
     id: "Update IP",
     callback: openUnlock,
@@ -126,19 +119,16 @@ const Pages: MenuEntry[] = [
   },
   {
     id: "Public Storage",
-    href: "/?page=storage",
     route: "storage",
     icon: Database,
   },
   {
     id: "Avatar Search",
-    href: "/?page=search",
     route: "search",
     icon: ScanSearch,
   },
   {
     id: "Custom Client Editor",
-    href: "/?page=editor",
     route: "editor",
     icon: PencilRuler,
   },
