@@ -8,9 +8,82 @@
         <meta name="darkreader-lock" />
         <link rel="icon" type="image/x-icon" href="/favicon.svg" />
         <title>Abyss</title>
+
+        <meta
+            name="description"
+            content="Your Abyss dashboard. Update your IP, fetch the latest downloads, and manage your custom client from one place."
+        />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Abyss" />
+        <meta property="og:title" content="Abyss" />
+        <meta
+            property="og:description"
+            content="Your Abyss dashboard. Update your IP, fetch the latest downloads, and manage your custom client from one place."
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Abyss" />
+        <meta
+            name="twitter:description"
+            content="Your Abyss dashboard. Update your IP, fetch the latest downloads, and manage your custom client from one place."
+        />
+
+        <!-- Paint the themed background before the bundle loads, so the app does
+             not flash white on its way to dark. Mirrors --background in
+             src/css/theme.css; the class matches useColorMode in
+             src/scripts/composables/useTheme.ts. -->
+        <style>
+            html {
+                background: oklch(1 0 0);
+            }
+
+            html.dark {
+                background: oklch(0.145 0 0);
+            }
+        </style>
+        <script>
+            (() => {
+                let mode;
+
+                try {
+                    mode = localStorage.getItem("vueuse-color-mode");
+                } catch {
+                    // Storage can be blocked outright; fall back to the OS.
+                }
+
+                if (!mode || mode === "auto") {
+                    mode = window.matchMedia("(prefers-color-scheme: dark)")
+                        .matches
+                        ? "dark"
+                        : "light";
+                }
+
+                if (mode === "dark") {
+                    document.documentElement.classList.add("dark");
+                }
+            })();
+        </script>
     </head>
     <body>
         <div id="app"></div>
+        <noscript>
+            <p
+                style="
+                    font-family: ui-monospace, monospace;
+                    max-width: 32rem;
+                    margin: 4rem auto;
+                    padding: 0 1rem;
+                    text-align: center;
+                    line-height: 1.6;
+                    color: light-dark(oklch(0.145 0 0), oklch(0.985 0 0));
+                "
+            >
+                Abyss needs JavaScript to run. Enable it for this site and
+                reload the page.
+            </p>
+        </noscript>
         <script type="module" src="/src/scripts/app.ts"></script>
     </body>
 </html>
